@@ -1,0 +1,38 @@
+{
+    "name": "dotplant/comments",
+    "description": "Comments module for DotPlant3",
+    "type": "dotplant-extension",
+    "keywords": ["yii2", "dotplant", "entity", "comments"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Pavel Fedotov",
+            "email": "fps.06@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "~2.0.0",
+        "devgroup/yii2-extensions-manager": "dev-master"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "DotPlant\\Comments\\": "src/"
+        }
+    },
+    "extra": {
+        "yii2-extension": {
+            "name": "DotPlant/Comments",
+            "name_ru": "DotPlant3 Комментарии",
+            "iconUrl": "",
+            "description_ru": "Модуль комментариев для DotPlant3"
+        },
+        "migrationPath": [
+            "src/migrations"
+        ],
+        "configurables": "src/configurables.php",
+        "translationCategory": "dotplant.comments"
+    }
+}
