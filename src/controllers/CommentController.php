@@ -4,6 +4,7 @@ namespace DotPlant\Comments\controllers;
 
 use DotPlant\Comments\models\Comment;
 use DotPlant\Comments\Module;
+use DotPlant\Emails\helpers\EmailHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
@@ -41,6 +42,16 @@ class CommentController extends Controller
             }
             $model->status = Comment::STATUS_NEW;
             if ($model->save()) {
+                // send message
+                if (!empty(Module::module()->email) && !empty(Module::module()->emailTemplateId)) {
+                    EmailHelper::sendNewMessage(
+                        Module::module()->email,
+                        Module::module()->emailTemplateId,
+                        [
+                            'model' => $model->attributes,
+                        ]
+                    );
+                }
                 return $model->id;
             } else {
                 var_dump($model->errors);

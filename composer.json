@@ -2,7 +2,7 @@
     "name": "dotplant/comments",
     "description": "Comments module for DotPlant3",
     "type": "dotplant-extension",
-    "keywords": ["yii2", "dotplant", "entity", "comments"],
+    "keywords": ["yii2", "dotplant", "entity", "comments", "reviews"],
     "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
@@ -14,7 +14,8 @@
     "require": {
         "php": ">=5.5.0",
         "yiisoft/yii2": "~2.0.0",
-        "devgroup/yii2-extensions-manager": "dev-master"
+        "devgroup/yii2-extensions-manager": "dev-master",
+        "dotplant/emails": "dev-master"
     },
     "require-dev": {},
     "autoload": {
@@ -24,7 +25,7 @@
     },
     "extra": {
         "yii2-extension": {
-            "name": "DotPlant/Comments",
+            "name": "DotPlant Comments",
             "name_ru": "DotPlant3 Комментарии",
             "iconUrl": "",
             "description_ru": "Модуль комментариев для DotPlant3"

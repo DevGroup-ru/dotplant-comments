@@ -4,6 +4,7 @@ namespace DotPlant\Comments\models;
 
 use DotPlant\Comments\Module;
 use DevGroup\ExtensionsManager\models\BaseConfigurationModel;
+use DotPlant\Emails\models\Template;
 use Yii;
 
 class CommentsConfiguration extends BaseConfigurationModel
@@ -11,6 +12,8 @@ class CommentsConfiguration extends BaseConfigurationModel
     public $commentsPerPage = 10;
     public $allowAnswer = true;
     public $allowForGuest = false;
+    public $email;
+    public $emailTemplateId;
 
     /**
      * @inheritdoc
@@ -29,6 +32,8 @@ class CommentsConfiguration extends BaseConfigurationModel
             [['commentsPerPage'], 'integer', 'min' => -1],
             [['allowAnswer', 'allowForGuest'], 'boolean'],
             [['allowAnswer', 'allowForGuest'], 'filter', 'filter' => 'boolval'],
+            [['email'], 'string'],
+            [['emailTemplateId'], 'exist', 'targetClass' => Template::class, 'targetAttribute' => 'id'],
         ];
     }
 
@@ -41,6 +46,8 @@ class CommentsConfiguration extends BaseConfigurationModel
             'commentsPerPage' => Yii::t('dotplant.comments', 'Comments per page'),
             'allowAnswer' => Yii::t('dotplant.comments', 'Allow to leave an answer'),
             'allowForGuest' => Yii::t('dotplant.comments', 'Guest can leave a message'),
+            'email' => Yii::t('dotplant.comments', 'E-mails list'),
+            'emailTemplateId' => Yii::t('dotplant.comments', 'E-mail template'),
         ];
     }
 
@@ -82,6 +89,8 @@ class CommentsConfiguration extends BaseConfigurationModel
                     'commentsPerPage' => $this->commentsPerPage,
                     'allowAnswer' => $this->allowAnswer,
                     'allowForGuest' => $this->allowForGuest,
+                    'email' => $this->email,
+                    'emailTemplateId' => $this->emailTemplateId,
                 ]
             ],
         ];
