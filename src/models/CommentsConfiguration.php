@@ -8,12 +8,16 @@ use Yii;
 
 class CommentsConfiguration extends BaseConfigurationModel
 {
+    public $commentsPerPage = 10;
+    public $allowAnswer = true;
+    public $allowForGuest = false;
+
     /**
      * @inheritdoc
      */
     public function getModuleClassName()
     {
-        return Module::className();
+        return Module::class;
     }
 
     /**
@@ -21,7 +25,11 @@ class CommentsConfiguration extends BaseConfigurationModel
      */
     public function rules()
     {
-        return [];
+        return [
+            [['commentsPerPage'], 'integer', 'min' => -1],
+            [['allowAnswer', 'allowForGuest'], 'boolean'],
+            [['allowAnswer', 'allowForGuest'], 'filter', 'filter' => 'boolval'],
+        ];
     }
 
     /**
@@ -29,7 +37,11 @@ class CommentsConfiguration extends BaseConfigurationModel
      */
     public function attributeLabels()
     {
-        return [];
+        return [
+            'commentsPerPage' => Yii::t('dotplant.comments', 'Comments per page'),
+            'allowAnswer' => Yii::t('dotplant.comments', 'Allow to leave an answer'),
+            'allowForGuest' => Yii::t('dotplant.comments', 'Guest can leave a message'),
+        ];
     }
 
     /**
@@ -67,6 +79,9 @@ class CommentsConfiguration extends BaseConfigurationModel
             'modules' => [
                 'comments' => [
                     'class' => Module::class,
+                    'commentsPerPage' => $this->commentsPerPage,
+                    'allowAnswer' => $this->allowAnswer,
+                    'allowForGuest' => $this->allowForGuest,
                 ]
             ],
         ];

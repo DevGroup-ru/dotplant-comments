@@ -4,6 +4,10 @@ namespace DotPlant\Comments;
 
 class Module extends \yii\base\Module
 {
+    public $commentsPerPage = 10;
+    public $allowAnswer = true;
+    public $allowForGuest = false;
+
     /**
      * @return self Module instance in application
      */
