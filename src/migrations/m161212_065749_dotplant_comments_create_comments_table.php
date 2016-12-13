@@ -21,7 +21,9 @@ class m161212_065749_dotplant_comments_create_comments_table extends Migration
 
     public function up()
     {
-        $tableOptions = '';
+        $tableOptions = $this->db->driverName === 'mysql'
+            ? 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'
+            : null;
         $this->createTable(
             Comment::tableName(),
             [
@@ -67,7 +69,7 @@ class m161212_065749_dotplant_comments_create_comments_table extends Migration
         $this->createIndex(
             'ix-dotplant_comments_comment-apm_id-model_id-parent_id-status',
             Comment::tableName(),
-            ['applicable_property_model_id', 'model_id', 'parent_id', 'status']
+            ['applicable_property_model_id', 'model_id', 'parent_id', 'status', 'created_at']
         );
         PermissionsHelper::createPermissions($this->permissions);
     }
