@@ -34,6 +34,7 @@ class m161212_065749_dotplant_comments_create_comments_table extends Migration
                 'user_id' => $this->integer()->null(),
                 'status' => $this->smallInteger()->defaultValue(Comment::STATUS_NEW),
                 'created_at' => $this->integer()->null(),
+                'name' => $this->string(100)->null(),
                 'email' => $this->string(100)->notNull(),
                 'text' => $this->text()->notNull(),
             ],

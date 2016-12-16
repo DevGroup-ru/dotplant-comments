@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property integer $user_id
  * @property integer $status
  * @property integer $created_at
+ * @property string $name
  * @property string $email
  * @property string $text
  */
@@ -88,7 +89,7 @@ class Comment extends ActiveRecord
             [['parent_id', 'applicable_property_model_id', 'model_id', 'user_id', 'status', 'created_at'], 'integer'],
             [['applicable_property_model_id', 'model_id', 'email', 'text'], 'required'],
             [['email'], 'email'],
-            [['email'], 'string', 'max' => 100],
+            [['email', 'name'], 'string', 'max' => 100],
             [['status'], 'in', 'range' => array_keys(static::getStatusesListData())],
             [['text'], 'string'],
         ];
@@ -107,6 +108,7 @@ class Comment extends ActiveRecord
             'user_id' => Yii::t('dotplant.comments', 'User'),
             'status' => Yii::t('dotplant.comments', 'Status'),
             'created_at' => Yii::t('dotplant.comments', 'Created at'),
+            'name' => Yii::t('dotplant.comments', 'Your name'),
             'email' => Yii::t('dotplant.comments', 'E-mail'),
             'text' => Yii::t('dotplant.comments', 'Text'),
         ];

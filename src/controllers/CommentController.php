@@ -20,6 +20,7 @@ class CommentController extends Controller
         echo $form->field($model, 'applicable_property_model_id');
         echo $form->field($model, 'model_id');
         echo $form->field($model, 'parent_id');
+        echo $form->field($model, 'name');
         echo $form->field($model, 'email');
         echo $form->field($model, 'text')->textarea();
         echo Html::submitButton();
