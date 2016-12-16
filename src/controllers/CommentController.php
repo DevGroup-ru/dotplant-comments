@@ -10,7 +10,6 @@ use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
-//use Yii;
 
 class CommentController extends Controller
 {
