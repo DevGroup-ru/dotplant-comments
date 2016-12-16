@@ -4,6 +4,7 @@ namespace DotPlant\Comments\providers;
 
 use DotPlant\Comments\models\Comment;
 use DotPlant\Comments\Module;
+use DotPlant\EntityStructure\helpers\PaginationHelper;
 use DotPlant\Monster\DataEntity\DataEntityProvider;
 use yii\data\Pagination;
 
@@ -26,7 +27,12 @@ class CommentsListProvider extends DataEntityProvider
     /**
      * @var string
      */
-    public $blockKey = 'data';
+    public $commentsBlockKey = 'data';
+
+    /**
+     * @var string
+     */
+    public $paginationBlockKey = 'pages';
 
     /**
      * @var int
@@ -85,7 +91,12 @@ class CommentsListProvider extends DataEntityProvider
             $this->entities = [
                 $this->regionKey => [
                     $this->materialKey => [
-                        $this->blockKey => $data,
+                        $this->commentsBlockKey => $data,
+                        $this->paginationBlockKey => [
+                            'commentsCount' => $pages->totalCount,
+                            'pagesCount' => $pages->pageCount,
+                            'items' => PaginationHelper::getItems($pages),
+                        ],
                     ],
                 ],
             ];
