@@ -86,6 +86,7 @@ class CommentsConfiguration extends BaseConfigurationModel
             'modules' => [
                 'comments' => [
                     'class' => Module::class,
+                    'layout' => \Yii::$app->params['admin.layout'],
                     'commentsPerPage' => $this->commentsPerPage,
                     'allowAnswer' => $this->allowAnswer,
                     'allowForGuest' => $this->allowForGuest,

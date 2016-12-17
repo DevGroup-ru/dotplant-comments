@@ -4,6 +4,7 @@ namespace DotPlant\Comments\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
 /**
@@ -112,5 +113,33 @@ class Comment extends ActiveRecord
             'email' => Yii::t('dotplant.comments', 'E-mail'),
             'text' => Yii::t('dotplant.comments', 'Text'),
         ];
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $this->load($params);
+        $query = static::find();
+        $partialAttributes = ['name', 'email'];
+        foreach ($this->attributes as $key => $value) {
+            if (in_array($key, $partialAttributes)) {
+                $query->andFilterWhere(['like', $key, $value]);
+            } else {
+                $query->andFilterWhere([$key => $value]);
+            }
+        }
+        return new ActiveDataProvider(
+            [
+                'query' => $query,
+                'sort' => [
+                    'defaultOrder' => [
+                        'id' => SORT_DESC,
+                    ],
+                ],
+            ]
+        );
     }
 }
