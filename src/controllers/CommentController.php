@@ -33,7 +33,7 @@ class CommentController extends Controller
             throw new ForbiddenHttpException;
         }
         $model = new Comment(['scenario' => 'new']);
-        if ($model->load(\Yii::$app->request->post())) {
+        if ($model->load(\Yii::$app->request->post(), '')) {
             if (!\Yii::$app->user->isGuest) {
                 $model->user_id = \Yii::$app->user->id;
                 $model->email = \Yii::$app->user->identity->email;

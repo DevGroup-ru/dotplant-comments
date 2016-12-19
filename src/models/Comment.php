@@ -35,7 +35,7 @@ class Comment extends ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['new'] = $scenarios['default'];
-        $excludedAttributes = ['status', 'user_id', 'createa_at'];
+        $excludedAttributes = ['status', 'user_id', 'created_at'];
         foreach ($scenarios['new'] as $key => $value) {
             if (in_array($value, $excludedAttributes)) {
                 unset($scenarios['new'][$key]);

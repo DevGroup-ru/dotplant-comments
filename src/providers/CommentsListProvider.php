@@ -86,7 +86,7 @@ class CommentsListProvider extends DataEntityProvider
                 ->asArray(true)
                 ->all();
             foreach ($data as $index => $row) {
-                $data[$index]['children'] = $this->getChildren($row['id']);
+                $data[$index]['answers'] = $this->getChildren($row['id']);
             }
             $this->entities = [
                 $this->regionKey => [
@@ -124,7 +124,7 @@ class CommentsListProvider extends DataEntityProvider
             ->asArray(true)
             ->all();
         foreach ($data as $index => $row) {
-            $data[$index]['children'] = $this->getChildren($row['id']);
+            $data[$index]['answers'] = $this->getChildren($row['id']);
         }
         return $data;
     }
